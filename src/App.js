@@ -3,6 +3,7 @@ import axios from "axios";
 import "./App.css";
 import DisplayEmployee from "./Components/DisplayEmployee";
 import sampleEmployee from "./sampleEmployee";
+import LoadingSpinner from "./LoadingSpinner";
 
 class App extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class App extends Component {
 
   getEmployee() {
     // Send the request
-    axios
+    this.setState({ loading: true }, () => { axios
       .get("https://randomuser.me/api?nat=US")
       // Extract the DATA from the received response
       .then((response) => response.data)
@@ -24,14 +25,17 @@ class App extends Component {
         this.setState({
           // loading: false,
           employee: data.results[0],
+          loading: false,
         });
-      });
+      });})
+   
   }
 
   render() {
+    const {loading } = this.state;
     return (
       <div>
-        <DisplayEmployee employee={this.state.employee} />
+        {loading ? <LoadingSpinner /> : <DisplayEmployee employee={this.state.employee}/>}
         <button type="button" onClick={this.getEmployee}>
           Get employee
         </button>
