@@ -14,6 +14,10 @@ class App extends Component {
     this.getEmployee = this.getEmployee.bind(this);
   }
 
+  componentDidMount(){
+    this.getEmployee();
+  }
+
   getEmployee() {
     // Send the request
     this.setState({ loading: true }, () => { axios
