@@ -2,7 +2,7 @@ import React from 'react';
 
 const LoadingSpinner = () => (
   <div>
-    <i className="fa fa-spinner fa-spin" /> Loading...
+    <img src="https://media.giphy.com/media/y1ZBcOGOOtlpC/giphy.gif" alt="spinner"/>
   </div>
 );
 
